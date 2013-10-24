@@ -1,0 +1,24 @@
+{
+  "name": "jquery-ticklist",
+  "version": "0.0.0",
+  "authors": [
+    "Dan Martin <dan.martin@epiphanysolutions.co.uk>"
+  ],
+  "description": "Progress ticklist plugin",
+  "main": "src/jquery-ticklist.js",
+  "keywords": [
+    "jQuery",
+    "progress",
+    "ticklist"
+  ],
+  "license": "MIT",
+  "homepage": "http://www.epiphanysearch.co.uk",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

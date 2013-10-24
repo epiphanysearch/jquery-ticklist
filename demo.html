@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ticklist Demo</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="src/progress-ticklist.js"></script>
+
+    <script type="text/javascript">
+
+        $(function() {
+
+            $('.item').progressTickListItem();
+
+            $('#start').on('click',function() {
+                $('#start').attr('disabled',true);
+                $('#reset').attr('disabled',true);
+                
+                // find the first item
+                var current = $('.item').first();
+                
+                // imaginary process to run
+                // on complete, succeed the item in question
+                // then select the next and run again
+                var process = function() {
+                    
+                    // mark as done
+                    current.progressTickListItem('succeed');
+                    
+                    // find next
+                    current = current.next();
+                    
+                    // more to do?
+                    if(current.length) {
+
+                        // do the next one
+                        current.progressTickListItem('start');
+                        window.setTimeout(process, 1000);
+                    } else {
+
+                        // done
+                        $('#start').attr('disabled',false);
+                        $('#reset').attr('disabled',false);
+                    }
+                }
+
+                // set it going
+                current.progressTickListItem('start');
+                window.setTimeout(process, 1000);
+            });
+
+            $('#reset').on('click',function() {
+                // reset all items
+                $('.item').progressTickListItem('reset');
+            });
+
+        });
+
+    </script>
+
+</head>
+<body>
+    <p>Please wait for the following items:</p>
+    <ul>
+        <li class='item'>one</li>
+        <li class='item'>two</li>
+        <li class='item'>three</li>
+        <li class='item'>four</li>
+        <li class='item'>five</li>
+    </ul>
+
+    <button id='reset'>Reset</button>
+    <button id='start'>Start</button>
+
+</body>
+</html>
